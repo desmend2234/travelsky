@@ -9,8 +9,10 @@ function SearchResult() {
 
     const getSearchProduct = async (query) => {
         const res = await axios.get(
-            'https://ec-course-api.hexschool.io/v2/api/desmend-react/products'
+            'https://ec-course-api.hexschool.io/v2/api/desmend-react/products/all'
         )
+        console.log(res.data.products);
+        
         const result = res.data.products.filter((item) => {
             return item.title == query || item.category == query
         })

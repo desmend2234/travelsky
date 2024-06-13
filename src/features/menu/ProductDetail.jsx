@@ -41,13 +41,11 @@ function ProductDetail() {
     useEffect(() => {
         async function fetCart() {
             const cartData = await getCartData()
-            console.log(cartData)
-
             return cartData
         }
         fetCart()
     }, [])
-    console.log('isInCart:', isInCart, 'currentQuantity:', currentQuantity)
+    // console.log('isInCart:', isInCart, 'currentQuantity:', currentQuantity)
 
     const dispatch = useDispatch()
     const addCart = async () => {
@@ -126,10 +124,10 @@ function ProductDetail() {
             <div className="my-4 px-8">
                 <Breadcrumb aria-label="Default breadcrumb example">
                     <Breadcrumb.Item href="/" icon={HiHome}>
-                        <p className="text-xl text-stone-600">Home</p>
+                        <p className="text-xl text-stone-600">首頁</p>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item href="/menu/all">
-                        <p className="text-xl text-stone-600">Menu</p>
+                        <p className="text-xl text-stone-600">所有行程</p>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item href={`/menu/productDetail/${id}`}>
                         <p className="text-xl text-stone-600">

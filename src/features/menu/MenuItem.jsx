@@ -4,6 +4,8 @@ import { currencyTwd } from '../../utils/helper'
 import { Rating } from 'flowbite-react'
 
 function MenuItem({ item }) {
+    console.log(item);
+    
     return (
         <div className="my-5 rounded-lg bg-stone-50">
             <Link to={`/menu/productDetail/${item.id}`}>

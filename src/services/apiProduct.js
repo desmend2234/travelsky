@@ -8,7 +8,7 @@ export async function getAllProduct() {
         const res = await axios.get(
             `${apiBaseUrl}/v2/api/${apiPath}/products/all`
         )
-        console.log(res)
+        
         return res.data.products
     } catch (error) {
         console.log(error)
@@ -47,7 +47,6 @@ export const getProductItem = async (id) => {
 export const getCartData = async () => {
     try {
         const res = await axios.get(`${apiBaseUrl}/v2/api/${apiPath}/cart`)
-        console.log(res.data.data)
         return res.data.data
     } catch (error) {
         console.log(error)
@@ -110,12 +109,10 @@ export async function handleCategory(allCategory) {
         let unSortProduct = allCategory?.map((item) => {
             return item.category
         })
-console.log(unSortProduct);
         // 篩選出不重複的種類
         let sorted = unSortProduct.filter((item, i) => {
             return unSortProduct.indexOf(item) === i
         })
-        console.log(sorted)
         return sorted
     } catch (error) {
         console.log(error)
@@ -133,7 +130,6 @@ export const updateCartItem = async (item, newQty) => {
             data
         )
         getCartData()
-        console.log(res)
         return res?.data?.data?.qty
     } catch (error) {
         console.log(error)

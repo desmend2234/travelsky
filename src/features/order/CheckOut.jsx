@@ -29,7 +29,7 @@ function CheckOut() {
     const navigation = useNavigation()
     const isSubmitting = navigation.state === 'submitting'
     // const cart = useSelector(getCart)
-    const { cartData } = useOutletContext()
+    const { cartData, getCartData } = useOutletContext()
     console.log(cartData)
 
     const {
@@ -59,6 +59,7 @@ function CheckOut() {
                 form
             )
             console.log('Order submission response:', res)
+            // getCartData()
             navigate(`/order/${res.data.orderId}`)
         } catch (error) {
             console.error('Error submitting order:', error)
@@ -100,7 +101,7 @@ function CheckOut() {
     }, [])
 
     return (
-        <div className="my-6  mx-auto container">
+        <div className="container  mx-auto my-6">
             <Form
                 method="POST"
                 className="min-w-96"
@@ -177,7 +178,7 @@ function CheckOut() {
                     />
                 </div>
                 <p className="my-3 flex items-center justify-center text-xl font-semibold text-stone-700">
-                   配送及付款
+                    配送及付款
                 </p>
                 <div className="grid grid-cols-2 gap-4 py-6">
                     <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -266,7 +267,7 @@ function CheckOut() {
                         labelText="Credit card (VISA, MasterCard, JCB)"
                         hasErrorMsg={false}
                     />
-                    <CheckboxRadio
+                    {/* <CheckboxRadio
                         register={register}
                         errors={errors}
                         type="radio"
@@ -281,7 +282,7 @@ function CheckOut() {
                         }}
                         labelText="Bank transfer／ATM"
                         hasErrorMsg={true}
-                    />
+                    /> */}
                 </div>
                 <div className="mb-3">
                     <h5>Order memo</h5>
@@ -365,10 +366,9 @@ function CheckOut() {
                         disabled={isSubmitting}
                         // className="btn btn-primary bg-indigo-500 px-7 py-3"
                     >
-                        
                         {isSubmitting
                             ? '送出訂單中🎶'
-                            : `立即送出 ${formatCurrency(totalAmount)}`}
+                            : `立即送出 ${currencyTwd(cartData?.final_total)}`}
                     </Button>
                     <Button to="/cart" type="secondary">
                         回到購物車

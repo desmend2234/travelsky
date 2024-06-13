@@ -11,7 +11,6 @@ import {
 } from '../services/apiProduct.js'
 
 function AppLayout() {
-    const [loading, setLoading] = useState(false)
     const [categoryList, setCategoryList] = useState()
     const [totalCartQty, setTotalCartQty] = useState()
     // const [cartData, setCartData] = useState()
@@ -38,8 +37,6 @@ function AppLayout() {
     const handleCategoryAndUpdate = async (allCategory) => {
         try {
             const updatedList = await handleCategory(allCategory)
-            console.log(updatedList)
-
             setCategoryList(updatedList)
         } catch (error) {
             console.error('Error updating categoryList:', error)
@@ -47,8 +44,6 @@ function AppLayout() {
     }
 
     const calculateTotalQuantity = (cartData) => {
-        console.log(cartData)
-
         const totalQuantity = cartData?.carts?.reduce((sum, item) => {
             return (sum += item.qty)
         }, 0)
@@ -57,7 +52,7 @@ function AppLayout() {
     useEffect(() => {
         getCartData()
     }, [])
-
+   
     return (
         <div className="bg-white-50  grid min-h-dvh grid-rows-[auto_1fr_auto]">
             <Navbar categoryList={categoryList} totalCartQty={totalCartQty} />
@@ -69,6 +64,7 @@ function AppLayout() {
                         allCategory,
                         cartData,
                         totalCartQty,
+                        getCartData
                     }}
                 />
             )}

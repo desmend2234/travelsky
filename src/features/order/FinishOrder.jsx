@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Link, useLoaderData, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { checkOutOrder, getCartData } from '../../services/apiProduct'
 import EmptyCart from '../cart/EmptyCart'
 import { useSelector } from 'react-redux'
@@ -122,7 +122,7 @@ function FinishOrder() {
                                                     付款方式
                                                 </th>
                                                 <td className="border-0 px-0 pt-0 text-end">
-                                                    ApplePay
+                                                    Credit card
                                                 </td>
                                             </tr>
                                         </tbody>

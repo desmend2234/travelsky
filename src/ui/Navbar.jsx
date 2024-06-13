@@ -2,14 +2,16 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logOut } from '../features/user/userSlice.js'
 import SearchProduct from './SearchProduct.jsx'
-import { getCartTotalQuantity } from '../features/cart/cartSlice.js'
+// import { getCartTotalQuantity } from '../features/cart/cartSlice.js'
 // import { fetchCategory } from '../features/menu/productSlice.js'
 
 function Navbar({ categoryList, totalCartQty }) {
+    console.log(totalCartQty)
+    
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const cartQuantity = useSelector(getCartTotalQuantity)
+    // const cartQuantity = useSelector(getCartTotalQuantity)
     const username = useSelector((state) => state.user.username)
 
     function handleLogOut() {
@@ -85,7 +87,7 @@ function Navbar({ categoryList, totalCartQty }) {
                                     className="block rounded bg-blue-500 px-3 py-2 text-white  md:bg-transparent md:p-0 md:text-blue-700 "
                                     aria-current="page"
                                 >
-                                   首頁
+                                    首頁
                                 </NavLink>
                             </li>
                             <li>
@@ -98,7 +100,7 @@ function Navbar({ categoryList, totalCartQty }) {
                                     //     dispatch(fetchCategory())
                                     // }}
                                 >
-                                    目的地
+                                    行程
                                     <svg
                                         className="ms-2.5 h-2.5 w-2.5"
                                         aria-hidden="true"
@@ -213,27 +215,30 @@ function Navbar({ categoryList, totalCartQty }) {
                                     關於我們
                                 </NavLink>
                             </li>
-                            {/* <li>
-                                {username && (
+                            {totalCartQty > 0 && (
+                                <li>
                                     <NavLink
-                                        href="#"
-                                        className="block rounded px-3 py-2 text-stone-900 hover:bg-stone-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-600"
-                                        onClick={handleLogOut}
+                                        to="/cart"
+                                        className="block rounded px-3 py-2 text-stone-900 hover:bg-stone-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-600 lg:hidden"
                                     >
-                                        Logout
+                                        購物車
                                     </NavLink>
-                                )}
-                            </li> */}
-                            <li>
-                                {username && totalCartQty > 0 && (
-                                    <div className="block rounded px-3 py-2 text-stone-900 hover:bg-stone-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-600">
-                                        <NavLink to="/cart">
-                                            購物車
-                                            <span className=" rounded-full bg-red-500 px-2  text-stone-100">
-                                                {totalCartQty}
-                                            </span>
-                                        </NavLink>
-                                    </div>
+                                </li>
+                            )}
+                                                    <li>
+                                {totalCartQty > 0 && (
+                                    <NavLink
+                                        to="/cart"
+                                        className="relative rounded px-3 py-2 text-stone-900 hover:bg-stone-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-600"
+                                    >
+                                        <img
+                                            src="/cart.svg"
+                                            className="hidden h-8 w-8 lg:flex"
+                                        />
+                                        <div className="absolute right-[-1rem] top-[-1rem] hidden rounded-full bg-red-500 px-2 text-stone-100  lg:flex">
+                                            {totalCartQty}
+                                        </div>
+                                    </NavLink>
                                 )}
                             </li>
                         </ul>

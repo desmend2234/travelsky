@@ -7,6 +7,8 @@ export default {
         './src/**/*.{js,ts,jsx,tsx}',
         './node_modules/flowbite/**/*.js',
         require.resolve('react-widgets/styles.css'),
+        'node_modules/flowbite-react/lib/esm/**/*.js',
+
         flowbite.content(),
     ],
     theme: {

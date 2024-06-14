@@ -11,7 +11,7 @@ function SideTabs() {
                             <li className="me-2" key={cate}>
                                 <Link
                                     to={`/menu/${cate}`}
-                                    className="inline-block rounded-t-lg border-b-2 border-transparent p-4 text-base hover:border-stone-300 hover:bg-stone-50 hover:text-stone-600"
+                                    className="inline-block rounded-t-lg border-b-2 border-transparent p-4 text-base hover:border-stone-300 hover:bg-stone-50 hover:text-stone-800"
                                 >
                                     {cate}
                                 </Link>

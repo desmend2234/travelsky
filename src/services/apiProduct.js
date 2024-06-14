@@ -8,7 +8,7 @@ export async function getAllProduct() {
         const res = await axios.get(
             `${apiBaseUrl}/v2/api/${apiPath}/products/all`
         )
-        
+       
         return res.data.products
     } catch (error) {
         console.log(error)
@@ -110,7 +110,7 @@ export async function handleCategory(allCategory) {
             return item.category
         })
         // 篩選出不重複的種類
-        let sorted = unSortProduct.filter((item, i) => {
+        let sorted = unSortProduct?.filter((item, i) => {
             return unSortProduct.indexOf(item) === i
         })
         return sorted

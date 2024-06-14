@@ -1,16 +1,20 @@
 import { useSelector } from 'react-redux'
 import Button from './Button'
 import Username from '../features/user/Username'
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import CreateUser from '../features/user/CreateUser'
+import { reviews } from '../features/menu/reviews'
 
 import { delay, motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
+import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
+import { FreeMode, Pagination } from 'swiper/modules'
 
-import { Pagination } from 'swiper/modules'
 function Home() {
+    const { allCategory } = useOutletContext()
+
     const username = useSelector((state) => state.user.username)
     const variants = {
         initial: {
@@ -124,6 +128,7 @@ function Home() {
                     </p>
                 </div>
             )}
+
             <section>
                 <h1 className="px-4 text-xl font-semibold uppercase text-stone-700 md:text-3xl">
                     提供最好的旅程
@@ -133,7 +138,53 @@ function Home() {
                     </span>
                 </h1>
             </section>
-            <section className="my-14 bg-slate-50 py-10">
+            <section className="my-14 bg-slate-50 px-4 py-10">
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={30}
+                    freeMode={true}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[FreeMode, Pagination]}
+                    className="mySwiper"
+                    breakpoints={{
+                        324: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    }}
+                >
+                    <div className="grid gap-8 p-5 text-left text-xl text-stone-800 md:lg:grid-cols-1 lg:grid-cols-3 ">
+                        {allCategory.map((item) => {
+                            return (
+                                <SwiperSlide key={item.id}>
+                                    <Link to={`/menu/productDetail/${item.id}`}>
+                                        <motion.div
+                                            className="h-full grid-flow-row  grid-cols-2 space-y-2 overflow-auto"
+                                            variants={variants}
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{
+                                                type: 'spring',
+                                                stiffness: 300,
+                                                damping: 8,
+                                            }}
+                                        >
+                                            <img
+                                                className="object-fit "
+                                                src={item.imageUrl}
+                                            />
+                                            <p className="text-justify">
+                                                {item.description}
+                                            </p>
+                                        </motion.div>
+                                    </Link>
+                                </SwiperSlide>
+                            )
+                        })}
+                    </div>
+                </Swiper>
+            </section>
+            {/* <section className="my-14 bg-slate-50 py-10">
                 <div className="grid gap-8 p-5 text-left text-xl text-stone-800 md:lg:grid-cols-1 lg:grid-cols-3 ">
                     <Link to="/menu/productDetail/-O-G8K-ldnkPxh_ZDSPr">
                         <motion.div
@@ -190,7 +241,8 @@ function Home() {
                         </motion.div>
                     </Link>
                 </div>
-            </section>
+            </section> */}
+
             <section>
                 <div className="my-8 grid min-h-[86dvh] grid-cols-1 content-around text-justify lg:grid-cols-2">
                     <div className="mx-6 my-10 text-balance ">
@@ -216,7 +268,8 @@ function Home() {
                     </ul>
                 </div>
             </section>
-            <section></section>
+
+            {/* 客戶評論 */}
             <section>
                 <div className="min-h-[86dvh]">
                     <h1 className="px-4 pt-10 text-xl font-semibold uppercase text-stone-700 md:text-3xl ">
@@ -238,93 +291,48 @@ function Home() {
                             breakpoints={{
                                 324: { slidesPerView: 1 },
                                 768: { slidesPerView: 1 },
-                                1024: { slidesPerView: 2 },
+                                1024: { slidesPerView: 3 },
                             }}
                         >
-                            <SwiperSlide className="flex  flex-col items-center justify-center ">
-                                <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
-                                    <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
-                                        <img
-                                            className="object-fit my-2 h-24 rounded-full"
-                                            src={
-                                                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                                            }
-                                        />
-                                        <div className="flex-col text-left">
-                                            <h3 className="text-xl">
-                                                Natalie Audrey
-                                            </h3>
-                                            <div>紐約,美國</div>
+                            {reviews.map((review) => {
+                                const [city] = allCategory.filter(
+                                    (item) => item.title == review.location
+                                )
+
+                                return (
+                                    <SwiperSlide
+                                        className="flex  flex-col items-center justify-center"
+                                        key={review.name}
+                                    >
+                                        <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
+                                            <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
+                                                <img
+                                                    className="object-fit my-2 h-24 rounded-full"
+                                                    src={review.img}
+                                                />
+                                                <div className="flex-col text-left">
+                                                    <h3 className="text-base">
+                                                        {review.name}
+                                                    </h3>
+                                                    <h3 className="text-base">
+                                                        {review.from}
+                                                    </h3>
+                                                    <Link
+                                                        to={`/menu/productDetail/${city?.id}`}
+                                                        className="underline hover:text-sky-700"
+                                                    >
+                                                        旅遊城市:{' '}
+                                                        {review.location}
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                            <p className="mx-4 mb-4 text-left">
+                                                {review.description}
+                                            </p>
                                         </div>
-                                    </div>
-                                    <p className="mx-4 mb-4 text-left">
-                                        這次威尼斯旅遊行程充滿了驚喜與感動。從壯麗的運河風光到歷史悠久的聖馬可廣場，每一站都帶來難忘的體驗，讓人流連忘返。
-                                    </p>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide className="flex  flex-col items-center justify-center ">
-                                <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
-                                    <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
-                                        <img
-                                            className="object-fit my-2 h-24 rounded-full"
-                                            src={
-                                                'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                                            }
-                                        />
-                                        <div className="flex-col text-left">
-                                            <h3 className="text-xl">
-                                                James Teller
-                                            </h3>
-                                            <div>赫爾辛基,芬蘭</div>
-                                        </div>
-                                    </div>
-                                    <p className="mx-4 mb-4 text-left">
-                                        這次米蘭旅遊行程充滿驚喜。從欣賞宏偉的米蘭大教堂，到漫步於文藝復興氣息濃厚的斯卡拉歌劇院，每一刻都令人難忘。米蘭的時尚與美食同樣令人陶醉。
-                                    </p>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide className="flex  flex-col items-center justify-center ">
-                                <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
-                                    <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
-                                        <img
-                                            className="object-fit my-2 h-24 rounded-full"
-                                            src={
-                                                'https://images.unsplash.com/photo-1612000529646-f424a2aa1bff?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                                            }
-                                        />
-                                        <div className="flex-col text-left">
-                                            <h3 className="text-xl">
-                                                Mason Lawrence
-                                            </h3>
-                                            <div>馬尼拉,菲律賓</div>
-                                        </div>
-                                    </div>
-                                    <p className="mx-4 mb-4 text-left">
-                                        這次奧斯陸旅遊行程充滿驚喜。從探索壯麗的維格蘭雕塑公園，到參觀歷史悠久的奧斯陸皇宮，每一站都帶來獨特的體驗。奧斯陸的自然美景與豐富的文化讓人流連忘返。
-                                    </p>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide className="flex  flex-col items-center justify-center ">
-                                <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
-                                    <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
-                                        <img
-                                            className="object-fit my-2 h-24 rounded-full"
-                                            src={
-                                                'https://images.unsplash.com/photo-1622403974791-6535771380d5?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                                            }
-                                        />
-                                        <div className="flex-col text-left">
-                                            <h3 className="text-xl">
-                                                Alex Cindy
-                                            </h3>
-                                            <div>邁阿密,美國</div>
-                                        </div>
-                                    </div>
-                                    <p className="mx-4 mb-4 text-left">
-                                        這次台北旅遊行程充滿驚喜。從登上壯觀的台北101俯瞰全市，到探索熱鬧的士林夜市品嘗美食，每一站都帶來獨特的體驗。台北的文化與活力讓人流連忘返。
-                                    </p>
-                                </div>
-                            </SwiperSlide>
+                                    </SwiperSlide>
+                                )
+                            })}
                         </Swiper>
                     </div>
                 </div>

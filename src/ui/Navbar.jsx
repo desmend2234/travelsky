@@ -6,9 +6,7 @@ import SearchProduct from './SearchProduct.jsx'
 // import { fetchCategory } from '../features/menu/productSlice.js'
 
 function Navbar({ categoryList, totalCartQty }) {
-    console.log(totalCartQty)
-    
-    const navigate = useNavigate()
+        const navigate = useNavigate()
     const dispatch = useDispatch()
 
     // const cartQuantity = useSelector(getCartTotalQuantity)

@@ -3,21 +3,25 @@ import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
 import { addMonths } from 'date-fns'
 import { useState, useLayoutEffect, useEffect } from 'react'
-import { useLoaderData, useOutletContext, useParams } from 'react-router-dom'
-import { useDispatch,  } from 'react-redux'
+import {
+    Link,
+    useLoaderData,
+    useOutletContext,
+    useParams,
+} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { addItem } from '../cart/cartSlice'
 import { getCartData, getProductItem } from '../../services/apiProduct'
 import UpdateItemQuantity from '../cart/UpdateItemQuantity'
-import DeleteItem from '../cart/DeleteItem'
 import { Carousel } from 'flowbite-react'
 import { currencyTwd } from '../../utils/helper'
 import Button from '../../ui/Button'
 import { Breadcrumb } from 'flowbite-react'
 import { HiHome } from 'react-icons/hi'
-import {  useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import LazyLoad from 'react-lazy-load'
-
+import { reviews } from './reviews'
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
 const apiPath = import.meta.env.VITE_REACT_APP_API_PATH
 
@@ -37,6 +41,9 @@ function ProductDetail() {
     const itemId = currentItem?.id
     const currentQuantity = currentItem?.qty
     const isInCart = currentQuantity > 0
+    const [review] = reviews.filter(
+        (review) => review.location == productItem?.title
+    )
 
     useEffect(() => {
         async function fetCart() {
@@ -71,8 +78,6 @@ function ProductDetail() {
             const res = await axios.get(
                 `${apiBaseUrl}/v2/api/${apiPath}/product/${id}`
             )
-            console.log(res)
-
             setProductItem(res.data.product)
             const productData = res.data.product
             let filterImage = productData.imagesUrl.filter((item) => {
@@ -86,15 +91,6 @@ function ProductDetail() {
         }
     }
 
-    // const { data: product1, isLoading } = useQuery({
-    //     queryKey: ['getProduct', id],
-    //     queryFn: (id) => getMainPic(id),
-    // })
-    // console.log(product1)
-
-    // useEffect(() => {
-    //     getProductItem(id)
-    // }, [id])
     useLayoutEffect(() => {
         getMainPic(id)
     }, [id])
@@ -137,9 +133,9 @@ function ProductDetail() {
                 </Breadcrumb>
             </div>
             <div className="mx-auto my-6">
-                <div className="mx-8 grid gap-4 sm:grid-cols-1 md:grid-cols-2">
-                    <div>
-                        <div className="h-56 sm:h-64 xl:h-96">
+                <div className="mx-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="grid grid-rows-2 gap-8 divide-y-2">
+                        <div className="h-[30dvh]">
                             <Carousel slide={false}>
                                 {tempPic.map((img, index) => {
                                     return (
@@ -153,16 +149,49 @@ function ProductDetail() {
                                 })}
                             </Carousel>
                         </div>
+                        {
+                            <div>
+                                <h1 className="mt-4 text-center text-xl font-semibold">
+                                    客戶推薦
+                                </h1>
+                                <div className="my-2  rounded-3xl bg-white  px-4 ">
+                                    <div className="flex items-center gap-2  text-wrap rounded-lg px-4 ">
+                                        <img
+                                            className="object-fit my-2 h-24 rounded-full"
+                                            src={review?.img}
+                                        />
+                                        <div className="flex-col text-justify">
+                                            <h3 className="text-base">
+                                                {review?.name}
+                                            </h3>
+                                            <h3 className="text-base">
+                                                {review?.from}
+                                            </h3>
+                                            {/* <Link
+                                                to={`/menu/productDetail/${city?.id}`}
+                                                className="underline hover:text-sky-700"
+                                            >
+                                                旅遊城市: {review.location}
+                                            </Link> */}
+                                        </div>
+                                    </div>
+                                    <p className="mx-4 mb-4 text-left">
+                                        {review?.description}
+                                    </p>
+                                </div>
+                            </div>
+                        }
+
                         <div>
-                            <h5
-                                style={{ whiteSpace: 'pre-line' }}
-                                className="mb-3 mt-3"
-                            >
+                            <h1 className="mt-4 text-center text-xl font-semibold">
+                                行程規劃
+                            </h1>
+                            <h5 className="mb-3 mt-3 hidden whitespace-pre-line md:flex">
                                 {productItem.content}
                             </h5>
                         </div>
                     </div>
-                    <div className="flex flex-col" key={productItem.id}>
+                    <div className="flex flex-col " key={productItem.id}>
                         <h3 className="  text-3xl font-semibold text-stone-700">
                             {productItem.title}
                         </h3>
@@ -192,7 +221,7 @@ function ProductDetail() {
                         </div>
                         <hr className="my-4" />
                         <div>
-                            <p className="py-4 text-xl tracking-wide text-stone-700">
+                            <p className=" py-4 text-xl tracking-wide text-stone-700">
                                 {productItem.description}
                             </p>
                         </div>

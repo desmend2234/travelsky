@@ -214,6 +214,14 @@ function Navbar({ categoryList, totalCartQty }) {
                                 >
                                     關於我們
                                 </NavLink>
+                            </li>{' '}
+                            <li>
+                                <NavLink
+                                    to="/contact"
+                                    className="block rounded px-3 py-2 text-stone-900 hover:bg-stone-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-600"
+                                >
+                                    聯絡我們
+                                </NavLink>
                             </li>
                             {totalCartQty > 0 && (
                                 <li>
@@ -225,7 +233,7 @@ function Navbar({ categoryList, totalCartQty }) {
                                     </NavLink>
                                 </li>
                             )}
-                                                    <li>
+                            <li>
                                 {totalCartQty > 0 && (
                                     <NavLink
                                         to="/cart"

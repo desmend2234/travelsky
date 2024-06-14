@@ -17,6 +17,7 @@ import MenuItem from './features/menu/MenuItem'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Toaster } from 'react-hot-toast'
 import About from './ui/About'
+import Contact from './ui/Contact'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About />,
+                errorElement: <Error />,
+            },
+            {
+                path: '/contact',
+                element: <Contact />,
                 errorElement: <Error />,
             },
             {

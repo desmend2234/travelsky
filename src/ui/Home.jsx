@@ -98,9 +98,7 @@ function Home() {
                                 initial="initial"
                                 animate="animate"
                                 className="object-fit sm:hidden md:flex"
-                                src={
-                                    'https://images.unsplash.com/photo-1521292270410-a8c4d716d518?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                                }
+                                src="/home.avif"
                             />
                         </div>
                     </div>{' '}
@@ -336,7 +334,7 @@ function Home() {
                     <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
                         還等什麼？立即出發！
                     </h1>
-                    <p className="mb-8 text-lg font-normal text-gray-300 sm:px-16 lg:px-48 lg:text-xl text-justify">
+                    <p className="mb-8 text-justify text-lg font-normal text-gray-300 sm:px-16 lg:px-48 lg:text-xl">
                         加入我們，展開一段難忘的旅程。探索全新目的地，創造持久的回憶，體驗一生一次的冒險。別再等待——今天就開始你的冒險吧！
                     </p>
                     <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">

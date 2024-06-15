@@ -81,11 +81,11 @@ function Home() {
                                 initial="initial2"
                                 animate="animate2"
                             >
-                                <h3 className="mb-2 text-balance text-6xl font-semibold uppercase ">
+                                <h3 className="mb-2 text-pretty text-7xl font-semibold uppercase ">
                                     踏上璀璨旅程
                                 </h3>
-                                <p className="mb-10 whitespace-normal break-words text-xl normal-case">
-                                    踏上終極旅程，探索世界上最令人驚嘆的目的地，體驗獨一無二的冒險。無論是壯麗的自然景觀、歷史悠久的文化遺址，還是充滿活力的城市，都能帶給你難以忘懷的回憶。這是一段充滿驚奇與發現的旅程，讓你親身感受不同的風土人情和美食佳餚。無論你是尋求刺激的冒險家，還是渴望放鬆的旅行者，你的夢想之旅正在等待——今天就開始探索吧，讓每一刻都成為值得珍藏的回憶！
+                                <p className="mb-10 whitespace-normal break-words text-xl normal-case text-justify">
+                                    踏上終極旅程，探索世界上最令人驚嘆的目的地，體驗獨一無二的冒險。
                                 </p>{' '}
                                 {username === '' ? (
                                     <CreateUser />
@@ -130,8 +130,8 @@ function Home() {
             )}
 
             <section>
-                <h1 className="px-4 text-xl font-semibold uppercase text-stone-700 md:text-3xl">
-                    提供最好的旅程
+                <h1 className="px-4 text-2xl font-semibold uppercase text-stone-700 md:text-3xl">
+                    熱門行程
                     <br />
                     <span className="uppercase text-blue-500">
                         探索你的下一段冒險

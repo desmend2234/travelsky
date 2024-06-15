@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link, useParams } from 'react-router-dom'
 import LinkButton from './LinkButton'
+import { currencyTwd } from '../utils/helper'
 
 function SearchResult() {
     const [product, setProduct] = useState({})
@@ -11,12 +12,9 @@ function SearchResult() {
         const res = await axios.get(
             'https://ec-course-api.hexschool.io/v2/api/desmend-react/products/all'
         )
-        console.log(res.data.products);
-        
         const result = res.data.products.filter((item) => {
             return item.title == query || item.category == query
         })
-        console.log(result)
         setProduct(result)
     }
     useEffect(() => {
@@ -28,7 +26,7 @@ function SearchResult() {
     return (
         <div className="mx-auto">
             <h2 className="mb-1 mt-6 px-6 text-start text-xl font-semibold">
-                {`${query}'s search result:`}
+                {`${query} 的搜尋結果如下:`}
             </h2>
             {!product.length ? (
                 <div>
@@ -36,7 +34,7 @@ function SearchResult() {
                         很抱歉，無「{query}
                         」相關資料。請使用其他的關鍵字再試一次。
                     </h4>{' '}
-                    <LinkButton to="-1">&larr; Go back</LinkButton>
+                    <LinkButton to="-1">&larr; 回上一頁</LinkButton>
                 </div>
             ) : (
                 product.map((item) => {
@@ -107,13 +105,13 @@ function SearchResult() {
                                         </div>
                                         <div className="flex items-center justify-between">
                                             <span className="text-3xl font-bold text-gray-900 ">
-                                                {item.price}
+                                                {currencyTwd(item.price)}
                                             </span>
                                             <Link
                                                 href="#"
                                                 className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 "
                                             >
-                                                Add to cart
+                                                加入購物車
                                             </Link>
                                         </div>
                                     </div>

@@ -3,15 +3,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
 import { addMonths } from 'date-fns'
 import { useState, useLayoutEffect, useEffect } from 'react'
-import {
-    Link,
-    useLoaderData,
-    useOutletContext,
-    useParams,
-} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { addItem } from '../cart/cartSlice'
-import { getCartData, getProductItem } from '../../services/apiProduct'
+import { Link, useOutletContext, useParams } from 'react-router-dom'
+
+import {  getProductItem } from '../../services/apiProduct'
 import UpdateItemQuantity from '../cart/UpdateItemQuantity'
 import { Carousel } from 'flowbite-react'
 import { currencyTwd } from '../../utils/helper'
@@ -22,19 +16,18 @@ import { useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import LazyLoad from 'react-lazy-load'
 import { reviews } from './reviews'
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
-const apiPath = import.meta.env.VITE_REACT_APP_API_PATH
 
 function ProductDetail() {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+    const apiPath = import.meta.env.VITE_REACT_APP_API_PATH
     const [cartQuantity, setCartQuantity] = useState(1)
     const [tempPic, setTempPic] = useState([])
     const [productItem, setProductItem] = useState({})
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(null)
     const { id } = useParams()
-    const menu = useLoaderData()
     const queryClient = useQueryClient()
-    const { cartData } = useOutletContext()
+    const { cartData,getCartData } = useOutletContext()
     const currentItem = cartData?.carts?.find((item) => {
         return item?.product_id === id
     })
@@ -54,7 +47,6 @@ function ProductDetail() {
     }, [])
     // console.log('isInCart:', isInCart, 'currentQuantity:', currentQuantity)
 
-    const dispatch = useDispatch()
     const addCart = async () => {
         try {
             const res = await axios.post(
@@ -66,9 +58,10 @@ function ProductDetail() {
                     },
                 }
             )
+            console.log(res)
             toast.success('Successfully adding to cart')
             queryClient.invalidateQueries('cartData')
-            dispatch(addItem(menu))
+            getCartData()
         } catch (error) {
             toast.error(error)
         }
@@ -182,11 +175,11 @@ function ProductDetail() {
                             </div>
                         }
 
-                        <div>
+                        <div className="hidden md:flex">
                             <h1 className="mt-4 text-center text-xl font-semibold">
                                 行程規劃
                             </h1>
-                            <h5 className="mb-3 mt-3 hidden whitespace-pre-line md:flex">
+                            <h5 className="mb-3 mt-3  whitespace-pre-line ">
                                 {productItem.content}
                             </h5>
                         </div>
@@ -225,8 +218,8 @@ function ProductDetail() {
                                 {productItem.description}
                             </p>
                         </div>
-                        <div className="py-4">
-                            <h5 className="my-2 text-xl font-semibold text-stone-700">
+                        <div className="my-4 justify-center grid items-center">
+                            <h5 className="my-4 text-xl font-semibold text-stone-700">
                                 選擇參加日期
                             </h5>
                             <DatePicker
@@ -241,33 +234,38 @@ function ProductDetail() {
                                 showDisabledMonthNavigation
                             />
                         </div>
-                        <hr className="py-2" />
+                        <hr className="my-2" />
 
-                        {isInCart && (
-                            <div className="my-4 flex items-center justify-normal">
-                                <div className="px-6  text-center">
-                                    <label className="text-xl tracking-wide">
-                                        數量
-                                    </label>
-                                </div>
-                                <div className="flex items-center gap-3 sm:gap-8">
-                                    <UpdateItemQuantity
-                                        id={itemId}
-                                        item={currentItem}
-                                    />
-                                    {/* <DeleteItem id={id} /> */}
-                                </div>
+                        {isInCart ? (
+                            <div>
+                                <Button type="checkOut" to="/cart">
+                                    結帳
+                                </Button>
                             </div>
-                        )}
-                        {!isInCart && (
-                            <Button type="primary" onClick={() => addCart()}>
-                                加入購物車
-                            </Button>
-                        )}
-                        {isInCart && (
-                            <Button type="checkOut" to="/cart">
-                                結帳
-                            </Button>
+                        ) : (
+                            <div className='grid justify-center'>
+                                <div className="my-4 flex items-center justify-center">
+                                    <div className="px-6  text-center">
+                                        <label className="text-xl tracking-wide">
+                                            數量
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center gap-3 sm:gap-8">
+                                        <UpdateItemQuantity
+                                            id={itemId}
+                                            item={currentItem}
+                                            cartQuantity={cartQuantity}
+                                            setCartQuantity={setCartQuantity}
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => addCart()}
+                                    className="w-[55dvw] bg-sky-600 py-6 text-xl text-white transition duration-200 hover:bg-sky-700 lg:w-[30rem]"
+                                >
+                                    加入購物車
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>

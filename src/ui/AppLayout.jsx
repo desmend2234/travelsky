@@ -1,35 +1,40 @@
 import Loader from './Loader.jsx'
 import Navbar from './Navbar.jsx'
-import { Outlet, useNavigation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Footer from './footer.jsx'
 import { useEffect, useState } from 'react'
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query'
-import {
-    getAllProduct,
-    getCartData,
-    handleCategory,
-} from '../services/apiProduct.js'
+import { getAllProduct, handleCategory } from '../services/apiProduct.js'
+import axios from 'axios'
 
 function AppLayout() {
     const [categoryList, setCategoryList] = useState()
     const [totalCartQty, setTotalCartQty] = useState()
-    // const [cartData, setCartData] = useState()
     const queryClient = useQueryClient()
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+    const apiPath = import.meta.env.VITE_REACT_APP_API_PATH
+    const [cartData, setCartData] = useState({})
 
     const { data: allCategory, isPending: allCategoryLoading } = useQuery({
         queryKey: ['allProducts'],
         queryFn: getAllProduct,
-        staleTime: 0,
     })
+    const getCartData = async () => {
+        try {
+            const res = await axios.get(`${apiBaseUrl}/v2/api/${apiPath}/cart`)
+            setCartData(res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     useEffect(() => {
         handleCategoryAndUpdate(allCategory)
     }, [allCategory])
 
-    const { data: cartData, isLoading } = useQuery({
-        queryKey: ['all'],
-        queryFn: getCartData,
-        staleTime: 0,
-    })
+    useEffect(() => {
+        getCartData()
+    }, [])
+    
     useEffect(() => {
         calculateTotalQuantity(cartData)
     }, [cartData])
@@ -49,25 +54,27 @@ function AppLayout() {
         }, 0)
         setTotalCartQty(totalQuantity)
     }
+
     useEffect(() => {
         getCartData()
+        getAllProduct()
     }, [])
-   
+
     return (
         <div className="bg-white-50  grid min-h-dvh grid-rows-[auto_1fr_auto]">
             <Navbar categoryList={categoryList} totalCartQty={totalCartQty} />
             <Loader loading={allCategoryLoading} />
-            {!isLoading && (
+            {
                 <Outlet
                     context={{
                         categoryList,
                         allCategory,
                         cartData,
                         totalCartQty,
-                        getCartData
+                        getCartData,
                     }}
                 />
-            )}
+            }
             <Footer />
         </div>
     )

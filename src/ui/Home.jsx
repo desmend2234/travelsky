@@ -155,7 +155,7 @@ function Home() {
                     }}
                 >
                     <div className="grid gap-8 p-5 text-left text-xl text-stone-800 md:lg:grid-cols-1 lg:grid-cols-3 ">
-                        {allCategory.map((item) => {
+                        {allCategory?.map((item) => {
                             return (
                                 <SwiperSlide key={item.id}>
                                     <Link to={`/menu/productDetail/${item.id}`}>
@@ -184,64 +184,6 @@ function Home() {
                     </div>
                 </Swiper>
             </section>
-            {/* <section className="my-14 bg-slate-50 py-10">
-                <div className="grid gap-8 p-5 text-left text-xl text-stone-800 md:lg:grid-cols-1 lg:grid-cols-3 ">
-                    <Link to="/menu/productDetail/-O-G8K-ldnkPxh_ZDSPr">
-                        <motion.div
-                            className="grid-flow-row grid-cols-2 space-y-2 "
-                            variants={variants}
-                            whileHover={{ scale: 1.05 }}
-                            transition={{
-                                type: 'spring',
-                                stiffness: 300,
-                                damping: 8,
-                            }}
-                        >
-                            <img className="object-fit " src="halstatt.avif" />
-                            <p>
-                                哈修塔特，位於奧地利，是一個風景如畫的小鎮。這裡擁有美麗的湖泊、壯麗的阿爾卑斯山景觀和保存完好的古老建築，屬於世界文化遺產。遊客可以漫步於狹窄街道，探索歷史悠久的教堂和鹽礦，享受寧靜的湖畔風光。
-                            </p>
-                        </motion.div>
-                    </Link>
-                    <Link to="/menu/productDetail/-O-Gd9CUCUuJCtRBUqwh">
-                        <motion.div
-                            variants={variants}
-                            whileHover={{ scale: 1.1 }}
-                            transition={{
-                                type: 'spring',
-                                stiffness: 400,
-                                damping: 10,
-                            }}
-                            className="grid-flow-row grid-cols-2 space-y-2"
-                        >
-                            <img
-                                className="object-fit "
-                                src="/effel tower.avif"
-                            />
-                            <p>
-                                艾菲爾鐵塔，位於法國巴黎，是世界上最著名的地標之一。這座宏偉的鐵塔於1889年建成，高達324米，吸引了無數遊客前來觀光。艾菲爾鐵塔不僅是巴黎的象徵，也是人類工程技術的傑作。登上鐵塔，可以俯瞰整個巴黎市區，感受浪漫之都的獨特魅力。無論白天還是夜晚，鐵塔都以其獨特的風采迷倒眾人。
-                            </p>
-                        </motion.div>
-                    </Link>
-                    <Link to="/menu/productDetail/-O-GeHyiHxN0cjZPrdVX">
-                        <motion.div
-                            variants={variants}
-                            whileHover={{ scale: 1.1 }}
-                            transition={{
-                                type: 'spring',
-                                stiffness: 400,
-                                damping: 10,
-                            }}
-                            className="grid-flow-row grid-cols-2 space-y-2"
-                        >
-                            <img className="object-fit " src="/river.avif" />
-                            <p>
-                                內卡河，位於德國西南部，是萊茵河的一條重要支流。這條河流經過黑森林、圖賓根和海德堡等風景如畫的地區，全長約367公里。內卡河兩岸風光秀麗，擁有古老的城堡、歷史悠久的小鎮和綠意盎然的葡萄園，吸引了無數遊客前來遊覽。乘船遊覽內卡河，能欣賞到德國的自然美景和文化遺產，是一次難忘的體驗。
-                            </p>
-                        </motion.div>
-                    </Link>
-                </div>
-            </section> */}
 
             <section>
                 <div className="my-8 grid min-h-[86dvh] grid-cols-1 content-around text-justify lg:grid-cols-2">
@@ -279,62 +221,64 @@ function Home() {
                             看看其他人怎麼說
                         </span>
                     </h1>
-                    <div className="my-14 h-96 w-full flex-col   rounded  bg-stone-100">
-                        <Swiper
-                            pagination={{
-                                dynamicBullets: true,
-                            }}
-                            modules={[Pagination]}
-                            className="mySwiper h-80"
-                            slidesPerView={2}
-                            spaceBetween={20}
-                            breakpoints={{
-                                324: { slidesPerView: 1 },
-                                768: { slidesPerView: 1 },
-                                1024: { slidesPerView: 3 },
-                            }}
-                        >
-                            {reviews.map((review) => {
-                                const [city] = allCategory.filter(
-                                    (item) => item.title == review.location
-                                )
+                    {allCategory && (
+                        <div className="my-14 h-96 w-full flex-col   rounded  bg-stone-100">
+                            <Swiper
+                                pagination={{
+                                    dynamicBullets: true,
+                                }}
+                                modules={[Pagination]}
+                                className="mySwiper h-80"
+                                slidesPerView={2}
+                                spaceBetween={20}
+                                breakpoints={{
+                                    324: { slidesPerView: 1 },
+                                    768: { slidesPerView: 1 },
+                                    1024: { slidesPerView: 3 },
+                                }}
+                            >
+                                {reviews?.map((review) => {
+                                    const [city] = allCategory.filter(
+                                        (item) => item.title == review.location
+                                    )
 
-                                return (
-                                    <SwiperSlide
-                                        className="flex  flex-col items-center justify-center"
-                                        key={review.name}
-                                    >
-                                        <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
-                                            <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
-                                                <img
-                                                    className="object-fit my-2 h-24 rounded-full"
-                                                    src={review.img}
-                                                />
-                                                <div className="flex-col text-left">
-                                                    <h3 className="text-base">
-                                                        {review.name}
-                                                    </h3>
-                                                    <h3 className="text-base">
-                                                        {review.from}
-                                                    </h3>
-                                                    <Link
-                                                        to={`/menu/productDetail/${city?.id}`}
-                                                        className="underline hover:text-sky-700"
-                                                    >
-                                                        旅遊城市:{' '}
-                                                        {review.location}
-                                                    </Link>
+                                    return (
+                                        <SwiperSlide
+                                            className="flex  flex-col items-center justify-center"
+                                            key={review.name}
+                                        >
+                                            <div className="my-2 w-[20rem] rounded-3xl bg-white  px-4 sm:w-[35rem] lg:w-[25vw]">
+                                                <div className="mt-4 flex items-center gap-2  text-wrap rounded-lg px-4 ">
+                                                    <img
+                                                        className="object-fit my-2 h-24 rounded-full"
+                                                        src={review.img}
+                                                    />
+                                                    <div className="flex-col text-left">
+                                                        <h3 className="text-base">
+                                                            {review.name}
+                                                        </h3>
+                                                        <h3 className="text-base">
+                                                            {review.from}
+                                                        </h3>
+                                                        <Link
+                                                            to={`/menu/productDetail/${city?.id}`}
+                                                            className="underline hover:text-sky-700"
+                                                        >
+                                                            旅遊城市:{' '}
+                                                            {review.location}
+                                                        </Link>
+                                                    </div>
                                                 </div>
+                                                <p className="mx-4 mb-4 text-left">
+                                                    {review.description}
+                                                </p>
                                             </div>
-                                            <p className="mx-4 mb-4 text-left">
-                                                {review.description}
-                                            </p>
-                                        </div>
-                                    </SwiperSlide>
-                                )
-                            })}
-                        </Swiper>
-                    </div>
+                                        </SwiperSlide>
+                                    )
+                                })}
+                            </Swiper>
+                        </div>
+                    )}
                 </div>
             </section>
             <section className="min-h-[75dvh] bg-gray-600 bg-[url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-center bg-no-repeat bg-blend-multiply">

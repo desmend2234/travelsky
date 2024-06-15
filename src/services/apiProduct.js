@@ -8,8 +8,8 @@ export async function getAllProduct() {
         const res = await axios.get(
             `${apiBaseUrl}/v2/api/${apiPath}/products/all`
         )
-       
-        return res.data.products
+        const allProduct= res.data.products
+         return allProduct
     } catch (error) {
         console.log(error)
     }
@@ -20,14 +20,11 @@ export async function getProduct(page = 1) {
         const res = await axios.get(
             `${apiBaseUrl}/v2/api/${apiPath}/products?page=${page}`
         )
-        console.log(res)
         let data = res.data.products
         let pages = res.data.pagination
 
         return data, pages
-        // dispatch({ type: 'GET_PRODUCTS', payload: res.data.products })
-        // console.log(res.data.products)
-        // dispatch({ type: 'GET_PAGE', payload: res.data.pagination })
+    
     } catch (error) {
         console.log(error)
     }
@@ -120,7 +117,6 @@ export async function handleCategory(allCategory) {
 }
 
 export const updateCartItem = async (item, newQty) => {
-    console.log(item, newQty)
     const data = {
         data: { product_id: item?.product_id, qty: newQty },
     }
@@ -141,7 +137,6 @@ export const removeCartItem = async (id) => {
         const res = await axios.delete(
             `${apiBaseUrl}/v2/api/${apiPath}/cart/${id}`
         )
-        // getCartData()
         toast.success('Successfully delete item')
         getCartData()
 

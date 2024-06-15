@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom'
 import LazyLoad from 'react-lazy-load'
 import { currencyTwd } from '../../utils/helper'
-import { Rating } from 'flowbite-react'
-import { Popover } from 'flowbite-react'
+import { Rating, Popover } from 'flowbite-react'
 import { reviews } from './reviews'
 import { delay, motion } from 'framer-motion'
 
 function MenuItem({ item }) {
-    // console.log(reviews)
-    // console.log(item)
-
     const [reviewer] = reviews.filter(
         (review) => review.location === item.title
     )
@@ -79,13 +75,9 @@ function MenuItem({ item }) {
             className="my-10 rounded-lg bg-stone-50 shadow-md"
         >
             <LazyLoad>
-                <img
-                    className="object-cover"
-                    src={item.imageUrl}
-                    alt="product image"
-                />
+                <img className="object-cover" src={item.imageUrl} />
             </LazyLoad>
-            <div className="px-5 py-2 ">
+            <div className="px-5 py-2">
                 <Link to={`/menu/productDetail/${item.id}`}>
                     <div className="text-3xl font-semibold tracking-tight text-stone-700 hover:underline ">
                         {item.title}
@@ -98,7 +90,6 @@ function MenuItem({ item }) {
                             4.95
                         </p>
                         <span className="mx-1.5 h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400" />
-
                         <Popover
                             aria-labelledby="profile-popover"
                             content={
@@ -106,18 +97,10 @@ function MenuItem({ item }) {
                                     <div className="mb-2 flex items-center justify-between">
                                         <a href="#">
                                             <img
-                                                className=" object-fit w-10 rounded-full"
+                                                className="object-fit w-10 rounded-full"
                                                 src={reviewer.img}
                                             />
                                         </a>
-                                        <div>
-                                            <button
-                                                type="button"
-                                                className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                            >
-                                                Follow
-                                            </button>
-                                        </div>
                                     </div>
                                     <p
                                         id="profile-popover"

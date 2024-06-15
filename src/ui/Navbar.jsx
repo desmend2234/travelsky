@@ -2,11 +2,17 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logOut } from '../features/user/userSlice.js'
 import SearchProduct from './SearchProduct.jsx'
-// import { getCartTotalQuantity } from '../features/cart/cartSlice.js'
-// import { fetchCategory } from '../features/menu/productSlice.js'
+// import Link from 'next/link'
+import {
+    Navbar as Nav,
+    NavbarBrand,
+    NavbarCollapse,
+    NavbarLink,
+    NavbarToggle,
+} from 'flowbite-react'
 
 function Navbar({ categoryList, totalCartQty }) {
-        const navigate = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     // const cartQuantity = useSelector(getCartTotalQuantity)

@@ -40,7 +40,7 @@ function Contact() {
         },
     }
     return (
-        <section className="container relative mx-auto my-4 grid min-h-screen">
+        <section className="container relative mx-auto mb-4 grid min-h-screen mt-24">
             <div className="grid grid-cols-1 items-center justify-evenly justify-items-center lg:grid-cols-2">
                 <div className="grid items-center justify-items-center  ">
                     <div className="space-y-4">

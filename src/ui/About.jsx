@@ -39,7 +39,7 @@ function About() {
         },
     }
     return (
-        <section className="container mx-auto my-4 min-h-screen">
+        <section className="container mx-auto my-24 min-h-full">
             <div className="grid grid-cols-1 items-center justify-items-center lg:grid-cols-2">
                 <motion.img
                     variants={variants}

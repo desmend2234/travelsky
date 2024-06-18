@@ -109,8 +109,8 @@ function ProductDetail() {
     }
 
     return (
-        <div className="container mx-auto">
-            <div className="my-4 px-8">
+        <div className="mx-44">
+            <div className="my-4 px-6">
                 <Breadcrumb aria-label="Default breadcrumb example">
                     <Breadcrumb.Item href="/" icon={HiHome}>
                         <p className="text-xl text-stone-600">首頁</p>
@@ -128,7 +128,7 @@ function ProductDetail() {
             <div className="mx-auto my-6">
                 <div className="mx-8 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="grid grid-rows-2 gap-8 divide-y-2">
-                        <div className="h-[30dvh]">
+                        <div className="h-[40dvh]">
                             <Carousel slide={false}>
                                 {tempPic.map((img, index) => {
                                     return (
@@ -175,7 +175,7 @@ function ProductDetail() {
                             </div>
                         }
 
-                        <div className="hidden md:flex">
+                        <div className="hidden md:grid">
                             <h1 className="mt-4 text-center text-xl font-semibold">
                                 行程規劃
                             </h1>

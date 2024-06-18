@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { checkOutOrder, getCartData } from '../../services/apiProduct'
+import {  getCartData } from '../../services/apiProduct'
 import EmptyCart from '../cart/EmptyCart'
 import { useSelector } from 'react-redux'
-import { getCart } from '../cart/cartSlice'
+
 import LinkButton from '../../ui/LinkButton'
 import Button from '../../ui/Button'
 import { currencyTwd } from '../../utils/helper'

@@ -4,8 +4,9 @@ import { currencyTwd } from '../../utils/helper'
 import { Rating, Popover } from 'flowbite-react'
 import { reviews } from './reviews'
 import { delay, motion } from 'framer-motion'
+import { memo } from 'react'
 
-function MenuItem({ item }) {
+const MenuItem = memo(function MenuItem({ item }) {
     const [reviewer] = reviews.filter(
         (review) => review.location === item.title
     )
@@ -157,6 +158,6 @@ function MenuItem({ item }) {
             </div>
         </motion.div>
     )
-}
+})
 
 export default MenuItem

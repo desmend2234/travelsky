@@ -10,7 +10,9 @@ export default {
         'node_modules/flowbite-react/lib/esm/**/*.js',
 
         flowbite.content(),
-    ],
+    ],daisyui: {
+        themes: [],
+      },
     theme: {
         fontFamily: {
             sans: 'Roboto mono,monospace',
@@ -19,7 +21,9 @@ export default {
             screens: {
                 xs: '360px',
             },
-        },
+        },daisyui: {
+      themes: ['lofi'],
+    },
     },
     plugins: [
         require('flowbite/plugin', 'react-widgets-tailwind'),

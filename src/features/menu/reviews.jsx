@@ -7,7 +7,7 @@ export const reviews = [
         location: '首爾',
         followers: '28',
         following: '130',
-        img: 'https://images.unsplash.com/photo-1475823678248-624fc6f85785?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img: 'https://images.unsplash.com/photo-1701351381765-695680b7d739?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
         name: 'Anh Nguyen',

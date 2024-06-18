@@ -12,7 +12,6 @@ import {
 import { Input, Select, CheckboxRadio } from '../../utils/formElement'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
-import { getCart, getCartTotalPrice } from '../cart/cartSlice'
 import Button from '../../ui/Button'
 import { currencyTwd, formatCurrency } from '../../utils/helper'
 import EmptyCart from '../cart/EmptyCart'
@@ -39,7 +38,7 @@ function CheckOut() {
     } = useForm({
         mode: 'onTouched',
     })
-    const totalAmount = useSelector(getCartTotalPrice)
+    // const totalAmount = useSelector(getCartTotalPrice)
 
     const onSubmit = async (data) => {
         const { name, email, tel, address } = data

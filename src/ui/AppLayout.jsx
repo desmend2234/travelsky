@@ -33,7 +33,7 @@ function AppLayout() {
 
     useEffect(() => {
         getCartData()
-    }, [])
+    })
     
     useEffect(() => {
         calculateTotalQuantity(cartData)
@@ -56,7 +56,6 @@ function AppLayout() {
     }
 
     useEffect(() => {
-        getCartData()
         getAllProduct()
     }, [])
 

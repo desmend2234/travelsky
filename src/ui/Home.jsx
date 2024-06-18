@@ -70,7 +70,7 @@ function Home() {
         },
     }
     return (
-        <div className="container mx-auto my-20 min-h-full text-center">
+        <div className="container mx-auto my-4 min-h-full text-center">
             <section className="relative my-12 flex min-h-[80vh]  justify-center">
                 <div className="px-5">
                     <div className="mb-5 items-center justify-center">

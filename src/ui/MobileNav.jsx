@@ -25,7 +25,7 @@ function MobileNav() {
             </Link>
             <div
                 onClick={() => setOpenMenu(true)}
-                className="absolute right-10 top-10 h-6 w-6 cursor-pointer"
+                className="absolute right-10 top-10 h-6 w-6 cursor-pointer z-30"
             >
                 <img src="/menu.png" />
             </div>

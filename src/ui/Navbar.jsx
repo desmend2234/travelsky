@@ -221,7 +221,7 @@ const Navbar = memo(function Navbar({ categoryList, totalCartQty }) {
         //         </div>
         //     </nav>
         // </div>
-        <header className="fixed z-40 flex min-h-[10dvh] w-full items-center bg-sky-200 px-[30px] text-xl shadow-sm lg:px-[10vw]">
+        <header className=" z-20 flex min-h-[10dvh] w-full items-center bg-sky-200 px-[30px] text-xl shadow-sm lg:px-[10vw]">
             <div className="flex w-full flex-col justify-between lg:flex-row lg:items-center">
                 <Link className="hidden gap-2 lg:flex">
                     <img src="/logo2.svg" className="h-14" alt="Logo" />

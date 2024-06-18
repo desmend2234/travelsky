@@ -7,7 +7,7 @@ function Menu() {
     const { categoryList, allCategory } = useOutletContext()
     return (
         <div>
-            <div className="mt-28">
+            <div className="my-4">
                 <Breadcrumb
                     aria-label="Default breadcrumb example"
                     className="container mx-auto"

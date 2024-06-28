@@ -160,7 +160,7 @@ function Home() {
                                 <SwiperSlide key={item.id}>
                                     <Link to={`/menu/productDetail/${item.id}`}>
                                         <motion.div
-                                            className="h-full grid-flow-row  grid-cols-2 space-y-2 overflow-auto"
+                                            className="h-full grid-flow-row  grid-cols-2 space-y-2 overflow-hidden"
                                             variants={variants}
                                             whileHover={{ scale: 1.05 }}
                                             transition={{

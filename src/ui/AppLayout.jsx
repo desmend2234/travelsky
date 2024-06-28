@@ -60,7 +60,7 @@ function AppLayout() {
     }, [])
 
     return (
-        <div className="bg-white-50  grid min-h-dvh grid-rows-[auto_1fr_auto]">
+        <div className="bg-white-50  grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-screen">
             <Navbar categoryList={categoryList} totalCartQty={totalCartQty} />
             <Loader loading={allCategoryLoading} />
             {

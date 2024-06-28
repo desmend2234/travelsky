@@ -221,8 +221,8 @@ const Navbar = memo(function Navbar({ categoryList, totalCartQty }) {
         //         </div>
         //     </nav>
         // </div>
-        <header className=" z-20 flex min-h-[10dvh] w-full items-center bg-sky-200 px-[30px] text-xl shadow-sm lg:px-[10vw]">
-            <div className="flex w-full flex-col justify-between lg:flex-row lg:items-center">
+        <header className="z-20 flex min-h-[10dvh] w-full items-center bg-sky-200 px-[30px] text-xl shadow-sm lg:px-[10vw]">
+            <div className="hidden w-full flex-col justify-between lg:flex lg:flex-row lg:items-center">
                 <Link className="hidden gap-2 lg:flex">
                     <img src="/logo2.svg" className="h-14" alt="Logo" />
                     <span className="self-center whitespace-nowrap text-2xl font-semibold text-stone-700">
@@ -255,8 +255,8 @@ const Navbar = memo(function Navbar({ categoryList, totalCartQty }) {
                         聯絡我們
                     </NavLink>
                 </nav>
-                <MobileNav />
             </div>
+            <MobileNav />
         </header>
     )
 })

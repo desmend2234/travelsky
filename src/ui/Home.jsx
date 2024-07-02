@@ -76,32 +76,34 @@ function Home() {
                     <div className="mb-5 items-center justify-center">
                         <div className="mb-4 grid gap-4 text-wrap md:grid-cols-1 lg:grid-cols-2">
                             <motion.article
-                                className="text-left"
+                                className="grid grid-rows-2 text-left "
                                 variants={variants}
                                 initial="initial2"
                                 animate="animate2"
                             >
-                                <h3 className="mb-2 text-pretty text-7xl font-semibold uppercase ">
-                                    踏上璀璨旅程
-                                </h3>
-                                <p className="mb-10 whitespace-normal break-words text-xl normal-case text-justify">
-                                    踏上終極旅程，探索世界上最令人驚嘆的目的地，體驗獨一無二的冒險。
-                                </p>{' '}
-                                {username === '' ? (
-                                    <CreateUser />
-                                ) : (
-                                    <div className="my-2 pt-20">
-                                        <Button type="primary" to="/menu/all">
-                                            歡迎繼續選購, {username}
-                                        </Button>
+                                <div>
+                                    {' '}
+                                    <h3 className="mb-2 text-pretty text-4xl font-semibold uppercase lg:text-7xl ">
+                                        踏上璀璨旅程
+                                    </h3>
+                                    <p className="mb-10 whitespace-normal break-words text-justify text-xl normal-case">
+                                        踏上終極旅程，探索世界上最令人驚嘆的目的地，體驗獨一無二的冒險。
+                                    </p>
+                                </div>
+                                <Link
+                                    to="/menu/all"
+                                    className="content-center text-center"
+                                >
+                                    <div className="cursor  inline-block cursor-pointer rounded-md bg-blue-600 px-5 py-2.5 text-base font-semibold uppercase tracking-wide   text-white transition-colors duration-300 hover:bg-blue-800 focus:ring-offset-2 sm:px-2 sm:py-1 md:px-4 md:py-2">
+                                        立即開始
                                     </div>
-                                )}
+                                </Link>
                             </motion.article>
                             <motion.img
                                 variants={variants}
                                 initial="initial"
                                 animate="animate"
-                                className="object-fit sm:hidden md:flex"
+                                className="object-fit  "
                                 src="/home.avif"
                             />
                         </div>
@@ -111,23 +113,9 @@ function Home() {
                     src="/arrow.png"
                     variants={variants}
                     animate="scrollButton"
-                    className="absolute bottom-[4rem] hidden h-10  w-10 lg:flex"
+                    className="absolute bottom-[4rem]  flex  h-10 w-10"
                 />
             </section>
-
-            {username && (
-                <div
-                    className="absolute right-10 flex "
-                    style={{ top: '8rem' }}
-                >
-                    <p className="hidden uppercase text-stone-700 md:flex">
-                        Welcome,
-                    </p>
-                    <p className="items-center uppercase text-stone-700">
-                        <Username />
-                    </p>
-                </div>
-            )}
 
             <section>
                 <h1 className="px-4 text-2xl font-semibold uppercase text-stone-700 md:text-3xl">

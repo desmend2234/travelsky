@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 function MobileNav() {
     const [openMenu, setOpenMenu] = useState(false)
-    console.log(openMenu)
+    // console.log(openMenu)
 
     const menuVariants = {
         hidden: {

@@ -11,7 +11,8 @@ function Button({ children, disabled, to, type, cb, onClick }) {
             base + ' px-4 py-3 md:px-10 md:py-4  text-center text-xl w-6/12',
         logout: 'inline-block text-sm transition-colors duration-300 rounded-full bg-blue-400 font-semibold uppercase tracking-wide text-stone-800 duration-300 hover:bg-blue-200 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2',
         secondary:
-            'inline-block text-base transition-colors duration-300 rounded-full border-2 border-stone-400 font-semibold uppercase tracking-wide text-stone-400 duration-300 hover:bg-stone-200  focus:bg-stone-300 hover:text-stone-800 focus:text-stone-800 focus:bg-stone-300 focus:outline-none focus:ring focus:ring-stone-200 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-3 md:px-4 md:py-2 sm:px-2 sm:py-1',
+            'inline-block text-base transition-colors duration-300 rounded-full border-2 border-stone-400 font-semibold uppercase tracking-wide text-stone-400 hover:bg-stone-200  focus:bg-stone-300 hover:text-stone-800 focus:text-stone-800  focus:outline-none focus:ring focus:ring-stone-200 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-3 md:px-4 md:py-2 sm:px-2 sm:py-1',
+        home: 'inline-block text-base transition-colors duration-300 rounded-full border-2 border-stone-400 font-semibold uppercase tracking-wide text-stone-400 hover:bg-stone-200   hover:text-stone-800 focus:text-stone-800 focus:bg-stone-300 focus:outline-none focus:ring focus:ring-stone-200 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-3 md:px-4 md:py-2 sm:px-2 sm:py-1',
     }
     if (to)
         return (

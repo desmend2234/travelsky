@@ -90,14 +90,14 @@ function Home() {
                                         踏上終極旅程，探索世界上最令人驚嘆的目的地，體驗獨一無二的冒險。
                                     </p>
                                 </div>
-                                <Link
-                                    to="/menu/all"
-                                    className="content-center text-center"
-                                >
-                                    <div className="cursor  inline-block cursor-pointer rounded-md bg-blue-600 px-5 py-2.5 text-base font-semibold uppercase tracking-wide   text-white transition-colors duration-300 hover:bg-blue-800 focus:ring-offset-2 sm:px-2 sm:py-1 md:px-4 md:py-2">
+                                <div className="content-center text-center">
+                                    <Link
+                                        to="/menu/all"
+                                        className=" inline-block  rounded-md bg-blue-600 px-5 py-2.5 text-base font-semibold uppercase tracking-wide   text-white transition-colors duration-300 hover:bg-blue-800 focus:ring-offset-2 sm:px-2 sm:py-1 md:px-4 md:py-2"
+                                    >
                                         立即開始
-                                    </div>
-                                </Link>
+                                    </Link>
+                                </div>
                             </motion.article>
                             <motion.img
                                 variants={variants}

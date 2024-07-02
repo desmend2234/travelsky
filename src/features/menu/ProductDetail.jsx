@@ -109,7 +109,7 @@ function ProductDetail() {
     }
 
     return (
-        <div className="mx-44">
+        <div >
             <div className="my-4 px-6">
                 <Breadcrumb aria-label="Default breadcrumb example">
                     <Breadcrumb.Item href="/" icon={HiHome}>
@@ -125,10 +125,10 @@ function ProductDetail() {
                     </Breadcrumb.Item>
                 </Breadcrumb>
             </div>
-            <div className="mx-auto my-6">
+            <div className="container mx-auto my-6">
                 <div className="mx-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="grid grid-rows-2 gap-8 divide-y-2">
-                        <div className="h-[40dvh]">
+                    <div className="grid grid-rows-2 gap-4 divide-y-2">
+                        <div className="lg:h-[40dvh]">
                             <Carousel slide={false}>
                                 {tempPic.map((img, index) => {
                                     return (
@@ -143,11 +143,11 @@ function ProductDetail() {
                             </Carousel>
                         </div>
                         {
-                            <div>
-                                <h1 className="mt-4 text-center text-xl font-semibold">
+                            <div className='grid items-center py-8'>
+                                <h1 className=" text-center text-xl font-semibold">
                                     客戶推薦
                                 </h1>
-                                <div className="my-2  rounded-3xl bg-white  px-4 ">
+                                <div className="rounded-3xl bg-white px-4 ">
                                     <div className="flex items-center gap-2  text-wrap rounded-lg px-4 ">
                                         <img
                                             className="object-fit my-2 h-24 rounded-full"
@@ -160,15 +160,10 @@ function ProductDetail() {
                                             <h3 className="text-base">
                                                 {review?.from}
                                             </h3>
-                                            {/* <Link
-                                                to={`/menu/productDetail/${city?.id}`}
-                                                className="underline hover:text-sky-700"
-                                            >
-                                                旅遊城市: {review.location}
-                                            </Link> */}
+                                          
                                         </div>
                                     </div>
-                                    <p className="mx-4 mb-4 text-left">
+                                    <p className="mx-4 text-left">
                                         {review?.description}
                                     </p>
                                 </div>
@@ -218,7 +213,7 @@ function ProductDetail() {
                                 {productItem.description}
                             </p>
                         </div>
-                        <div className="my-4 justify-center grid items-center">
+                        <div className="my-4 grid items-center justify-center">
                             <h5 className="my-4 text-xl font-semibold text-stone-700">
                                 選擇參加日期
                             </h5>
@@ -237,13 +232,13 @@ function ProductDetail() {
                         <hr className="my-2" />
 
                         {isInCart ? (
-                            <div>
+                            <div className='flex justify-center'>
                                 <Button type="checkOut" to="/cart">
                                     結帳
                                 </Button>
                             </div>
                         ) : (
-                            <div className='grid justify-center'>
+                            <div className="grid justify-center">
                                 <div className="my-4 flex items-center justify-center">
                                     <div className="px-6  text-center">
                                         <label className="text-xl tracking-wide">
